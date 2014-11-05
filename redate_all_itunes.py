@@ -5,9 +5,10 @@ import xml.dom.minidom
 import dicttoxml
 
 import xml.etree.ElementTree as ET
-tree = ET.parse('practice_.xml')
-root = tree.getroot()
+tree = ET.parse('practice_library_sample.xml')
+root = ET.Element("plist")
 
+print root.tag
 print "Reading source file..."
 DOMsource = xml.dom.minidom.parse("practice_library_sample.xml")
 collection = DOMsource.documentElement
@@ -53,7 +54,7 @@ for track in tracks:
 			xml_string += xml_tdata
 			break
 
-xml_tdata += '</dict></dict></plist>'
+xml_string += '</dict></plist>'
 
 f = open('new_lib.xml', 'w')
 
@@ -67,7 +68,7 @@ tdata_node.toprettyxml()
 
 f = open('new_lib.xml', 'w')
 
-f.write(xml_string)
+f.write(str(tdata_node.data))
 
 f.close()
 
